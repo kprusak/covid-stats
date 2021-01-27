@@ -7,15 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts';
 import { StatsService } from './stats.service';
 import { StatsComponent } from './stats/stats.component';
-import { DetailedStatsComponent } from './detailed-stats/detailed-stats.component';
-
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    StatsComponent,
-    DetailedStatsComponent
+    StatsComponent
   ],
   imports: [
     BrowserModule,

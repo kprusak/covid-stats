@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StatsService } from '../stats.service';
+import { Stats } from '../stats.service';
 
 @Component({
   selector: 'app-stats',
@@ -8,26 +9,29 @@ import { StatsService } from '../stats.service';
 })
 export class StatsComponent implements OnInit {
 
+  constructor(private _stats: StatsService) { }
+
+  stats!: Stats[];
+
   public barChartOptions = {
     scaleShowVerticalLines: false,
     responsive: true
   };
 
-  public barChartLabels = [] as string[];
-  public barChartType = 'bar' as Chart.ChartType;
-  public barChartLegend = true;
-
   public barChartData = [
     {data: [] as number[], label: 'Total Cases'}
   ];
 
-  constructor(private _stats: StatsService) { }
+  public barChartLabels = [] as string[];
+  public barChartType = 'bar' as Chart.ChartType;
+  public barChartLegend = true;
 
   ngOnInit(): void {
     this._stats.getAllStats(); //get stats
   }
 
   ngDoCheck(): void {
+    this.stats=this._stats.statsToLoad;
     this._stats.statsToLoad.sort(this.sortStats); //sort data by total cases to make usage easier
     this.showStats(); //
   };
@@ -48,10 +52,10 @@ export class StatsComponent implements OnInit {
   showStats() {
     let onlyCountries = this._stats.statsToLoad.map(stat => stat.country);
     let onlyTotalCases = this._stats.statsToLoad.map(stat => stat.cases.total);
-    let continents = ['All', 'Europe', 'North-America', 'South-America', 'Africa', 'Asia']
+    let notCountries = ['All', 'Europe', 'North-America', 'South-America', 'Africa', 'Asia'] //remove continents which are treated like countries in API
 
     for( var i = 0; i < onlyCountries.length; i++){ 
-      if ( continents.indexOf(onlyCountries[i]) !== -1 ) { 
+      if ( notCountries.indexOf(onlyCountries[i]) !== -1 ) { 
         onlyCountries.splice(i, 1); 
         onlyTotalCases.splice(i, 1); 
         i--;
