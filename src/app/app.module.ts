@@ -4,14 +4,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { StatsComponent } from './stats/stats.component';
 import { ChartsModule } from 'ng2-charts';
+import { StatsService } from './stats.service';
+import { StatsComponent } from './stats/stats.component';
+import { DetailedStatsComponent } from './detailed-stats/detailed-stats.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    StatsComponent
+    StatsComponent,
+    DetailedStatsComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +24,7 @@ import { ChartsModule } from 'ng2-charts';
     BrowserAnimationsModule,
     ChartsModule
   ],
-  providers: [],
+  providers: [StatsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

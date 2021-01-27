@@ -1,41 +1,12 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
-export class Stats {
-  continent!: string;
-  country!: string;
-  day!: string;
-  time!: string;
-  population!: number;
-  cases!: {
-    M_pop: number;
-    active: number;
-    critical: number;
-    new: string;
-    recovered: number;
-    total: number;
-  };
-  deaths!: {
-    M_pop: number;
-    new: number;
-    total: number;
-  };
-  tests!: {
-    M_pop: number;
-    total: number;
-  };
-}
-
+import { StatsService } from '../stats.service';
 
 @Component({
   selector: 'app-stats',
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.css']
 })
-
 export class StatsComponent implements OnInit {
-
-  stats!: Stats[];
 
   public barChartOptions = {
     scaleShowVerticalLines: false,
@@ -50,35 +21,18 @@ export class StatsComponent implements OnInit {
     {data: [] as number[], label: 'Total Cases'}
   ];
 
-  constructor(
-    private httpClient: HttpClient
-  ) { }
+  constructor(private _stats: StatsService) { }
 
   ngOnInit(): void {
-    this.getStats();
+    this._stats.getAllStats(); //get stats
   }
 
   ngDoCheck(): void {
-    this.loadStats();
+    this._stats.statsToLoad.sort(this.sortStats); //sort data by total cases to make usage easier
+    this.showStats(); //
   };
 
-
-  headers = {	'x-rapidapi-key': 'a35db0fe3dmshdf09ff9a2276fa7p1dd30ejsn2ab68bdd5e5a',
-              'x-rapidapi-host': 'covid-193.p.rapidapi.com',
-              'useQueryString': 'true',
-  };
-
-  getStats(){
-    this.httpClient.get<any>('https://covid-193.p.rapidapi.com/statistics', {headers: this.headers}).subscribe(
-      res => {
-        this.stats = res.response; //get data from API
-        this.stats.sort(this.sortData); //sort data by total cases to make usage easier
-        console.log(this.stats)
-      }
-    );
-  }
-
-  sortData(a: { cases: { total: any; }; }, b: { cases: { total: any; }; }) {
+  sortStats(a: { cases: { total: any; }; }, b: { cases: { total: any; }; }) {
     const firstPopulation = a.cases.total;
     const secondPopulation = b.cases.total;
   
@@ -91,10 +45,9 @@ export class StatsComponent implements OnInit {
     return comparison;
   }
 
-  loadStats() {
-
-    let onlyCountries = this.stats.map(stat => stat.country);
-    let onlyTotalCases = this.stats.map(stat => stat.cases.total);
+  showStats() {
+    let onlyCountries = this._stats.statsToLoad.map(stat => stat.country);
+    let onlyTotalCases = this._stats.statsToLoad.map(stat => stat.cases.total);
     let continents = ['All', 'Europe', 'North-America', 'South-America', 'Africa', 'Asia']
 
     for( var i = 0; i < onlyCountries.length; i++){ 
@@ -108,4 +61,5 @@ export class StatsComponent implements OnInit {
     this.barChartLabels = onlyCountries.slice(0,10);
     this.barChartData[0].data = onlyTotalCases.slice(0,10);
   }
+  
 }
