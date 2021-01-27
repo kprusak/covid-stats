@@ -1,1 +1,25 @@
-<p>stats works!</p>
+<h2>World Data Summary - Top 10 Countries with highest total positive cases number</h2>
+
+<div>
+    <div>
+      <canvas baseChart
+            width=1000px
+            height=500px
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+        </canvas>
+    </div>
+  </div>
+
+<!--
+<select>
+    <option *ngFor='let stat of stats' [value]="stat.country">{{stat.country}}</option>
+</select>
+
+<select>
+    <option *ngFor='let stat of stats' [value]="stat.continent">{{stat.continent}}</option>
+</select>
+-->
