@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-export class Stats {
-  continent!: string;
-  country!: string;
-  day!: string;
-  time!: string;
-  population!: number;
-  cases!: {
+export interface Stats {
+  continent: string;
+  country: string;
+  day: string;
+  time: string;
+  population: number;
+  cases: {
     M_pop: number;
     active: number;
     critical: number;
@@ -15,12 +15,12 @@ export class Stats {
     recovered: number;
     total: number;
   };
-  deaths!: {
+  deaths: {
     M_pop: number;
     new: number;
     total: number;
   };
-  tests!: {
+  tests: {
     M_pop: number;
     total: number;
   };
