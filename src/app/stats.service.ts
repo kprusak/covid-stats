@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-export class Stats {
-  continent!: string;
-  country!: string;
-  day!: string;
-  time!: string;
-  population!: number;
-  cases!: {
+export interface Stats {
+  continent: string;
+  country: string;
+  day: string;
+  time: string;
+  population: number;
+  cases: {
     M_pop: number;
     active: number;
     critical: number;
@@ -15,12 +15,12 @@ export class Stats {
     recovered: number;
     total: number;
   };
-  deaths!: {
+  deaths: {
     M_pop: number;
     new: number;
     total: number;
   };
-  tests!: {
+  tests: {
     M_pop: number;
     total: number;
   };
@@ -44,10 +44,17 @@ export class StatsService {
   getAllStats(){
     this._http.get<any>('https://covid-193.p.rapidapi.com/statistics', {headers: this.headers}).subscribe(
       res => {
-        this.statsToLoad = res.response; //get data from API
+        let stats = res.response;
+        let notCountries = ['All', 'Europe', 'North-America', 'South-America', 'Africa', 'Asia'] //remove continents which are treated like countries in API
+        for( var i = 0; i < stats.length; i++){ 
+          if ( notCountries.indexOf(stats[i].country) !== -1 ) { 
+            stats.splice(i, 1);  
+            i--;
+          }
+        }
+        this.statsToLoad = stats; //get data from API
       }
     );
   }
-
 
 }

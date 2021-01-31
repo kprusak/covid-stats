@@ -1,0 +1,31 @@
+<div>
+    <h2 class="subheader">Detailed stats per country for {{stats[0].day}}</h2>
+</div>
+<div>
+    <span>
+        <select (change)="selectContinentHandler($event)">
+            <option value="All">All Continents</option>
+            <option value="Africa">Africa</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="North-America">North America</option>
+            <option value="South-America">South America</option>
+        </select>
+        <input type ='text' class='searchbox' placeholder="Search here" [(ngModel)]='searchTerm'>
+    </span>
+</div>
+<br>
+<div>
+    <mat-grid-list cols="3" rowHeight="3.5:2" >
+        <mat-grid-tile *ngFor='let stat of stats | countryFilter: searchTerm'>
+            <mat-card class='card'>
+                <mat-card-title>{{stat.country}}</mat-card-title>
+                <mat-card-subtitle>Total cases: {{stat.cases.total}}.</mat-card-subtitle>
+                New today: {{stat.cases.new}}
+                <br> Total tests: {{stat.tests.total}},
+                <br> DEATHS: New today: {{stat.deaths.new}}, Total: {{stat.deaths.total}}
+                <br>
+            </mat-card> 
+        </mat-grid-tile>
+      </mat-grid-list>
+</div>
