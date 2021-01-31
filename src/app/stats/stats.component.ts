@@ -56,12 +56,12 @@ export class StatsComponent implements OnInit {
   }
 
   showStats() {
-    let onlyCountries: string[] = this._stats.statsToLoad.map(stat => stat.country);
-    let onlyTotalCases: number[] = this._stats.statsToLoad.map(stat => stat.cases.total);
+    let onlyCountries: string[] = [];
+    let onlyTotalCases: number[] = [];
 
     if(this.selectedContinent === 'All') {
-      this.barChartLabels = onlyCountries.slice(0,10);
-      this.barChartData[0].data = onlyTotalCases.slice(0,10);
+      onlyCountries = this._stats.statsToLoad.map(stat => stat.country);
+      onlyTotalCases = this._stats.statsToLoad.map(stat => stat.cases.total);
     }
 
     if(this.selectedContinent === 'Africa') {
@@ -73,8 +73,6 @@ export class StatsComponent implements OnInit {
           onlyTotalCases.push(this._stats.statsToLoad[i].cases.total);
         }
       }
-      this.barChartLabels = onlyCountries.slice(0,10);
-      this.barChartData[0].data = onlyTotalCases.slice(0,10);
     }
 
     if(this.selectedContinent === 'Asia') {
@@ -86,8 +84,6 @@ export class StatsComponent implements OnInit {
           onlyTotalCases.push(this._stats.statsToLoad[i].cases.total);
         }
       }
-      this.barChartLabels = onlyCountries.slice(0,10);
-      this.barChartData[0].data = onlyTotalCases.slice(0,10);
     }
 
     if(this.selectedContinent === 'Europe') {
@@ -99,8 +95,6 @@ export class StatsComponent implements OnInit {
           onlyTotalCases.push(this._stats.statsToLoad[i].cases.total);
         }
       }
-      this.barChartLabels = onlyCountries.slice(0,10);
-      this.barChartData[0].data = onlyTotalCases.slice(0,10);
     }
 
     if(this.selectedContinent === 'North-America') {
@@ -112,8 +106,6 @@ export class StatsComponent implements OnInit {
           onlyTotalCases.push(this._stats.statsToLoad[i].cases.total);
         }
       }
-      this.barChartLabels = onlyCountries.slice(0,10);
-      this.barChartData[0].data = onlyTotalCases.slice(0,10);
     }
     
     if(this.selectedContinent === 'South-America') {
@@ -125,9 +117,11 @@ export class StatsComponent implements OnInit {
           onlyTotalCases.push(this._stats.statsToLoad[i].cases.total);
         }
       }
-      this.barChartLabels = onlyCountries.slice(0,10);
-      this.barChartData[0].data = onlyTotalCases.slice(0,10);
     }
+
+    this.barChartLabels = onlyCountries.slice(0,10);
+    this.barChartData[0].data = onlyTotalCases.slice(0,10);
+
   }
   
 }
