@@ -55,22 +55,9 @@ export class StatsComponent implements OnInit {
     return comparison;
   }
 
-
-  removeContinents(onlyCountries: string[], onlyTotalCases: number[]) {
-    let notCountries = ['All', 'Europe', 'North-America', 'South-America', 'Africa', 'Asia'] //remove continents which are treated like countries in API
-    for( var i = 0; i < onlyCountries.length; i++){ 
-      if ( notCountries.indexOf(onlyCountries[i]) !== -1 ) { 
-        onlyCountries.splice(i, 1); 
-        onlyTotalCases.splice(i, 1); 
-        i--;
-      }
-    }
-  }
-
   showStats() {
     let onlyCountries: string[] = this._stats.statsToLoad.map(stat => stat.country);
     let onlyTotalCases: number[] = this._stats.statsToLoad.map(stat => stat.cases.total);
-    this.removeContinents(onlyCountries, onlyTotalCases)
 
     if(this.selectedContinent === 'All') {
       this.barChartLabels = onlyCountries.slice(0,10);
@@ -86,8 +73,8 @@ export class StatsComponent implements OnInit {
           onlyTotalCases.push(this._stats.statsToLoad[i].cases.total);
         }
       }
-      this.barChartLabels = onlyCountries.slice(1,11);
-      this.barChartData[0].data = onlyTotalCases.slice(1,11);
+      this.barChartLabels = onlyCountries.slice(0,10);
+      this.barChartData[0].data = onlyTotalCases.slice(0,10);
     }
 
     if(this.selectedContinent === 'Asia') {
@@ -99,8 +86,8 @@ export class StatsComponent implements OnInit {
           onlyTotalCases.push(this._stats.statsToLoad[i].cases.total);
         }
       }
-      this.barChartLabels = onlyCountries.slice(1,11);
-      this.barChartData[0].data = onlyTotalCases.slice(1,11);
+      this.barChartLabels = onlyCountries.slice(0,10);
+      this.barChartData[0].data = onlyTotalCases.slice(0,10);
     }
 
     if(this.selectedContinent === 'Europe') {
@@ -112,8 +99,8 @@ export class StatsComponent implements OnInit {
           onlyTotalCases.push(this._stats.statsToLoad[i].cases.total);
         }
       }
-      this.barChartLabels = onlyCountries.slice(1,11);
-      this.barChartData[0].data = onlyTotalCases.slice(1,11);
+      this.barChartLabels = onlyCountries.slice(0,10);
+      this.barChartData[0].data = onlyTotalCases.slice(0,10);
     }
 
     if(this.selectedContinent === 'North-America') {
@@ -125,8 +112,8 @@ export class StatsComponent implements OnInit {
           onlyTotalCases.push(this._stats.statsToLoad[i].cases.total);
         }
       }
-      this.barChartLabels = onlyCountries.slice(1,11);
-      this.barChartData[0].data = onlyTotalCases.slice(1,11);
+      this.barChartLabels = onlyCountries.slice(0,10);
+      this.barChartData[0].data = onlyTotalCases.slice(0,10);
     }
     
     if(this.selectedContinent === 'South-America') {
@@ -138,8 +125,8 @@ export class StatsComponent implements OnInit {
           onlyTotalCases.push(this._stats.statsToLoad[i].cases.total);
         }
       }
-      this.barChartLabels = onlyCountries.slice(1,11);
-      this.barChartData[0].data = onlyTotalCases.slice(1,11);
+      this.barChartLabels = onlyCountries.slice(0,10);
+      this.barChartData[0].data = onlyTotalCases.slice(0,10);
     }
   }
   

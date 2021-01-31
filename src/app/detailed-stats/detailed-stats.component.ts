@@ -16,5 +16,5 @@ export class DetailedStatsComponent implements OnInit {
   ngOnInit(): void {
     this.stats=this._stats.statsToLoad;
   }
-
+  
 }

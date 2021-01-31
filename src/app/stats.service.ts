@@ -44,10 +44,17 @@ export class StatsService {
   getAllStats(){
     this._http.get<any>('https://covid-193.p.rapidapi.com/statistics', {headers: this.headers}).subscribe(
       res => {
-        this.statsToLoad = res.response; //get data from API
+        let stats = res.response;
+        let notCountries = ['All', 'Europe', 'North-America', 'South-America', 'Africa', 'Asia'] //remove continents which are treated like countries in API
+        for( var i = 0; i < stats.length; i++){ 
+          if ( notCountries.indexOf(stats[i].country) !== -1 ) { 
+            stats.splice(i, 1);  
+            i--;
+          }
+        }
+        this.statsToLoad = stats; //get data from API
       }
     );
   }
-
 
 }
