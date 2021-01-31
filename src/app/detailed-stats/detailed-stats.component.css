@@ -1,0 +1,8 @@
+.subheader {
+    margin-top: 30px;
+}
+
+.stat-block {
+    display: flex;
+    position: relative;
+}

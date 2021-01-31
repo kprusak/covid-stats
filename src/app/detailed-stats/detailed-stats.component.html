@@ -1,0 +1,28 @@
+<div>
+    <h2 class="subheader">Detailed stats per country - for {{stats[0].day}}</h2>
+</div>
+<div>
+    <span>
+        <select>
+            <option value="All">All</option>
+            <option value="Africa">Africa</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="North-America">North America</option>
+            <option value="South-America">South America</option>
+        </select>
+        <select>
+            <option *ngFor='let stat of stats' [value]="stat.continent">{{stat.continent}}</option>
+        </select>
+        <input>
+    </span>
+</div>
+<div>
+    <div *ngFor='let stat of stats' class="stat-block">
+        Country: {{stat.country}}
+        <br> Population: {{stat.population}}, 
+        <br> CASES: New today: {{stat.cases.new}}, Total: {{stat.cases.total}}
+        <br> DEATHS: New today: {{stat.deaths.new}}, Total: {{stat.deaths.total}}
+        <br><br>
+    </div>
+</div>

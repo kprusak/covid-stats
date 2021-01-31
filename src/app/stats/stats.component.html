@@ -1,15 +1,13 @@
 <div>
   <h2>World Data Summary - Top 10 Countries with highest total positive cases number</h2>
-  <div>
-    <select (change)="selectContinentHandler($event)">
-        <option value="All">All</option>
-        <option value="Africa">Africa</option>
-        <option value="Asia">Asia</option>
-        <option value="Europe">Europe</option>
-        <option value="North-America">North America</option>
-        <option value="South-America">South America</option>
-    </select>
-  </div>
+  <select (change)="selectContinentHandler($event)">
+      <option value="All">All</option>
+      <option value="Africa">Africa</option>
+      <option value="Asia">Asia</option>
+      <option value="Europe">Europe</option>
+      <option value="North-America">North America</option>
+      <option value="South-America">South America</option>
+  </select>
   <div>
       <canvas baseChart
             width=1000px
