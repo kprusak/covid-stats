@@ -8,20 +8,24 @@ import { ChartsModule } from 'ng2-charts';
 import { StatsService } from './stats.service';
 import { StatsComponent } from './stats/stats.component';
 import { DetailedStatsComponent } from './detailed-stats/detailed-stats.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     StatsComponent,
-    DetailedStatsComponent
+    DetailedStatsComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ChartsModule
+    ChartsModule,
+    MatGridListModule,
+    MatCardModule,
   ],
   providers: [StatsService],
   bootstrap: [AppComponent]

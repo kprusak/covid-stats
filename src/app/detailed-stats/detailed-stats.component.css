@@ -2,7 +2,7 @@
     margin-top: 30px;
 }
 
-.stat-block {
-    display: flex;
-    position: relative;
+.card {
+    width: 270px;
+    height: 130px;
 }

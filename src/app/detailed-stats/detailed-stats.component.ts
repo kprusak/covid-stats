@@ -2,6 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { StatsService } from '../stats.service';
 import { Stats } from '../stats.service';
 
+
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
+
+
 @Component({
   selector: 'app-detailed-stats',
   templateUrl: './detailed-stats.component.html',

@@ -1,5 +1,5 @@
 <div>
-    <h2 class="subheader">Detailed stats per country - for {{stats[0].day}}</h2>
+    <h2 class="subheader">Detailed stats per country for {{stats[0].day}}</h2>
 </div>
 <div>
     <span>
@@ -11,18 +11,21 @@
             <option value="North-America">North America</option>
             <option value="South-America">South America</option>
         </select>
-        <select>
-            <option *ngFor='let stat of stats' [value]="stat.continent">{{stat.continent}}</option>
-        </select>
         <input>
     </span>
 </div>
+<br>
 <div>
-    <div *ngFor='let stat of stats' class="stat-block">
-        Country: {{stat.country}}
-        <br> Population: {{stat.population}}, 
-        <br> CASES: New today: {{stat.cases.new}}, Total: {{stat.cases.total}}
-        <br> DEATHS: New today: {{stat.deaths.new}}, Total: {{stat.deaths.total}}
-        <br><br>
-    </div>
+    <mat-grid-list cols="3" rowHeight="3.5:2" >
+        <mat-grid-tile *ngFor='let stat of stats'>
+            <mat-card class='card'>
+                <mat-card-title>{{stat.country}}</mat-card-title>
+                <mat-card-subtitle>Total cases: {{stat.cases.total}}.</mat-card-subtitle>
+                New today: {{stat.cases.new}}
+                <br> Total tests: {{stat.tests.total}},
+                <br> DEATHS: New today: {{stat.deaths.new}}, Total: {{stat.deaths.total}}
+                <br>
+            </mat-card> 
+        </mat-grid-tile>
+      </mat-grid-list>
 </div>
