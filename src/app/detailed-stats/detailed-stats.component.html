@@ -11,13 +11,13 @@
             <option value="North-America">North America</option>
             <option value="South-America">South America</option>
         </select>
-        <input>
+        <input type ='text' class='searchbox' placeholder="Search here" [(ngModel)]='searchTerm'>
     </span>
 </div>
 <br>
 <div>
     <mat-grid-list cols="3" rowHeight="3.5:2" >
-        <mat-grid-tile *ngFor='let stat of stats'>
+        <mat-grid-tile *ngFor='let stat of stats | countryFilter: searchTerm'>
             <mat-card class='card'>
                 <mat-card-title>{{stat.country}}</mat-card-title>
                 <mat-card-subtitle>Total cases: {{stat.cases.total}}.</mat-card-subtitle>

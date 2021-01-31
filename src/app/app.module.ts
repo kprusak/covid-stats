@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,14 +12,18 @@ import { DetailedStatsComponent } from './detailed-stats/detailed-stats.componen
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 
+import { CountryFilterPipe } from './detailed-stats/country-filter.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
     StatsComponent,
     DetailedStatsComponent,
+    CountryFilterPipe,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,

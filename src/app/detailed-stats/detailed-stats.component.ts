@@ -11,6 +11,7 @@ export class DetailedStatsComponent implements OnInit {
   constructor(private _stats: StatsService) { }
 
   stats!: Stats[];
+  searchTerm: string = '';
 
   selectedContinent: string = 'All';
   selectContinentHandler (event: any) {
