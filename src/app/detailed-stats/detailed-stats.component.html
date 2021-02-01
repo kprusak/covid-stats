@@ -1,29 +1,34 @@
 <div>
-    <h2 class="subheader">Detailed stats per country for {{stats[0].day}}</h2>
+    <h1 class="subheader">Detailed stats per Country</h1>
 </div>
 <div>
     <span>
-        <select (change)="selectContinentHandler($event)">
-            <option value="All">All Continents</option>
-            <option value="Africa">Africa</option>
-            <option value="Asia">Asia</option>
-            <option value="Europe">Europe</option>
-            <option value="North-America">North America</option>
-            <option value="South-America">South America</option>
-        </select>
-        <input type ='text' class='searchbox' placeholder="Search here" [(ngModel)]='searchTerm'>
+        <mat-form-field appearance="fill">
+            <mat-label>Choose Continent</mat-label>
+            <mat-select [(value)]="selectedContinent">
+                <mat-option value="All">All Continents</mat-option>
+                <mat-option value="Africa">Africa</mat-option>
+                <mat-option value="Asia">Asia</mat-option>
+                <mat-option value="Europe">Europe</mat-option>
+                <mat-option value="North-America">North America</mat-option>
+                <mat-option value="South-America">South America</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class='searchbox'>
+            <mat-label>Search here</mat-label>
+            <input type ='text' matInput [(ngModel)]='searchTerm'>
+        </mat-form-field>
     </span>
 </div>
-<br>
 <div>
-    <mat-grid-list cols="3" rowHeight="3.5:2" >
+    <mat-grid-list cols="3" rowHeight="3.2:2" >
         <mat-grid-tile *ngFor='let stat of stats | countryFilter: searchTerm'>
             <mat-card class='card'>
                 <mat-card-title>{{stat.country}}</mat-card-title>
-                <mat-card-subtitle>Total cases: {{stat.cases.total}}.</mat-card-subtitle>
-                New today: {{stat.cases.new}}
-                <br> Total tests: {{stat.tests.total}},
-                <br> DEATHS: New today: {{stat.deaths.new}}, Total: {{stat.deaths.total}}
+                <mat-card-subtitle>Total cases: {{stat.cases.total}}. <br> Total deaths: {{stat.deaths.total}}.</mat-card-subtitle>
+                New cases today: {{stat.cases.new}}
+                <br> New deaths today: {{stat.deaths.new}},
+                <br> Total tests: {{stat.tests.total}}.
                 <br>
             </mat-card> 
         </mat-grid-tile>

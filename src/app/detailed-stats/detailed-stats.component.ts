@@ -14,9 +14,6 @@ export class DetailedStatsComponent implements OnInit {
   searchTerm: string = '';
 
   selectedContinent: string = 'All';
-  selectContinentHandler (event: any) {
-    this.selectedContinent = event.target.value;
-  }
 
   ngOnInit(): void {
     this.showStats();
@@ -27,26 +24,14 @@ export class DetailedStatsComponent implements OnInit {
   };
 
   showStats() {
-    let statsy: Stats[] = [];
+    let statsContainer: Stats[] = [];
     if(this.selectedContinent === 'All') {
-      statsy = this._stats.statsToLoad;
+      statsContainer = this._stats.statsToLoad;
     }
-    if(this.selectedContinent === 'Asia') {
-      statsy = this._stats.statsToLoad.filter(stat => stat.continent === 'Asia');
+    else if(this.selectedContinent === this.selectedContinent) {
+      statsContainer = this._stats.statsToLoad.filter(stat => stat.continent === this.selectedContinent);
     }
-    if(this.selectedContinent === 'Africa') {
-      statsy = this._stats.statsToLoad.filter(stat => stat.continent === 'Africa');
-    }
-    if(this.selectedContinent === 'Europe') {
-      statsy = this._stats.statsToLoad.filter(stat => stat.continent === 'Europe');
-    }
-    if(this.selectedContinent === 'North-America') {
-      statsy = this._stats.statsToLoad.filter(stat => stat.continent === 'North-America');
-    }
-    if(this.selectedContinent === 'South-America') {
-      statsy = this._stats.statsToLoad.filter(stat => stat.continent === 'South-America');
-    }
-    this.stats = statsy;
+    this.stats = statsContainer;
   }
   
 }
