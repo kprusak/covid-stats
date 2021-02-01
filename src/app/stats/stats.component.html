@@ -1,22 +1,30 @@
 <div>
-  <h2>World Data Summary - Top 10 Countries with highest total positive cases number</h2>
-  <select (change)="selectContinentHandler($event)">
-      <option value="All">All Continents</option>
-      <option value="Africa">Africa</option>
-      <option value="Asia">Asia</option>
-      <option value="Europe">Europe</option>
-      <option value="North-America">North America</option>
-      <option value="South-America">South America</option>
-  </select>
-  <div>
-      <canvas baseChart
-            width=1000px
-            height=500px
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
-            [options]="barChartOptions"
-            [legend]="barChartLegend"
-            [chartType]="barChartType">
-        </canvas>
-    </div>
+    <h1 class="subheader">Top 10 Countries with highest total positive cases number ({{stats[0].day}})</h1>
+</div>
+<div>
+  <span> 
+    <mat-form-field appearance="fill">
+      <mat-label>Choose Continent</mat-label>
+      <mat-select [(value)]="selectedContinent">
+            <mat-option value="All">All Continents</mat-option>
+            <mat-option value="Africa">Africa</mat-option>
+            <mat-option value="Asia">Asia</mat-option>
+            <mat-option value="Europe">Europe</mat-option>
+            <mat-option value="North-America">North America</mat-option>
+            <mat-option value="South-America">South America</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </span>
+</div>
+
+<div>
+  <canvas baseChart
+        width=1000px
+        height=500px
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [chartType]="barChartType">
+  </canvas>
 </div>

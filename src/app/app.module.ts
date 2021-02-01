@@ -11,8 +11,11 @@ import { StatsComponent } from './stats/stats.component';
 import { DetailedStatsComponent } from './detailed-stats/detailed-stats.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 import { CountryFilterPipe } from './detailed-stats/country-filter.pipe';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +33,8 @@ import { CountryFilterPipe } from './detailed-stats/country-filter.pipe';
     ChartsModule,
     MatGridListModule,
     MatCardModule,
+    MatSelectModule,
+    MatInputModule
   ],
   providers: [StatsService],
   bootstrap: [AppComponent]

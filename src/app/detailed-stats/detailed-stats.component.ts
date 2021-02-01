@@ -14,9 +14,6 @@ export class DetailedStatsComponent implements OnInit {
   searchTerm: string = '';
 
   selectedContinent: string = 'All';
-  selectContinentHandler (event: any) {
-    this.selectedContinent = event.target.value;
-  }
 
   ngOnInit(): void {
     this.showStats();

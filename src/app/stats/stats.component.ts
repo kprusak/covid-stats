@@ -27,10 +27,6 @@ export class StatsComponent implements OnInit {
   public barChartLegend = true;
 
   selectedContinent: string = 'All';
-  selectContinentHandler (event: any) {
-    this.selectedContinent = event.target.value;
-  }
-
 
   ngOnInit(): void {
     this._stats.getAllStats(); //get stats
@@ -74,10 +70,8 @@ export class StatsComponent implements OnInit {
       }
     }
 
-
     this.barChartLabels = onlyCountries.slice(0,10);
     this.barChartData[0].data = onlyTotalCases.slice(0,10);
-
   }
   
 }
