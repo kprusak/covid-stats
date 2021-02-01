@@ -63,61 +63,17 @@ export class StatsComponent implements OnInit {
       onlyCountries = this._stats.statsToLoad.map(stat => stat.country);
       onlyTotalCases = this._stats.statsToLoad.map(stat => stat.cases.total);
     }
-
-    if(this.selectedContinent === 'Africa') {
+    else if(this.selectedContinent === this.selectedContinent) {
       onlyCountries = [];
       onlyTotalCases = [];
       for (var i = 0; i < this._stats.statsToLoad.length; i++) {
-        if (this._stats.statsToLoad[i].continent == 'Africa') {
+        if (this._stats.statsToLoad[i].continent == this.selectedContinent) {
           onlyCountries.push(this._stats.statsToLoad[i].country);
           onlyTotalCases.push(this._stats.statsToLoad[i].cases.total);
         }
       }
     }
 
-    if(this.selectedContinent === 'Asia') {
-      onlyCountries = [];
-      onlyTotalCases = [];
-      for (var i = 0; i < this._stats.statsToLoad.length; i++) {
-        if (this._stats.statsToLoad[i].continent == 'Asia') {
-          onlyCountries.push(this._stats.statsToLoad[i].country);
-          onlyTotalCases.push(this._stats.statsToLoad[i].cases.total);
-        }
-      }
-    }
-
-    if(this.selectedContinent === 'Europe') {
-      onlyCountries = [];
-      onlyTotalCases = [];
-      for (var i = 0; i < this._stats.statsToLoad.length; i++) {
-        if (this._stats.statsToLoad[i].continent == 'Europe') {
-          onlyCountries.push(this._stats.statsToLoad[i].country);
-          onlyTotalCases.push(this._stats.statsToLoad[i].cases.total);
-        }
-      }
-    }
-
-    if(this.selectedContinent === 'North-America') {
-      onlyCountries = [];
-      onlyTotalCases = [];
-      for (var i = 0; i < this._stats.statsToLoad.length; i++) {
-        if (this._stats.statsToLoad[i].continent == 'North-America') {
-          onlyCountries.push(this._stats.statsToLoad[i].country);
-          onlyTotalCases.push(this._stats.statsToLoad[i].cases.total);
-        }
-      }
-    }
-    
-    if(this.selectedContinent === 'South-America') {
-      onlyCountries = [];
-      onlyTotalCases = [];
-      for (var i = 0; i < this._stats.statsToLoad.length; i++) {
-        if (this._stats.statsToLoad[i].continent == 'South-America') {
-          onlyCountries.push(this._stats.statsToLoad[i].country);
-          onlyTotalCases.push(this._stats.statsToLoad[i].cases.total);
-        }
-      }
-    }
 
     this.barChartLabels = onlyCountries.slice(0,10);
     this.barChartData[0].data = onlyTotalCases.slice(0,10);
